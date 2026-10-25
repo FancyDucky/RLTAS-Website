@@ -243,4 +243,27 @@
   document.querySelectorAll("[data-year]").forEach((el) => {
     el.textContent = new Date().getFullYear();
   });
+
+  // ---------- Header news bar ----------
+  document.querySelectorAll(".news-bar").forEach((bar) => {
+    const track = bar.querySelector(".news-bar-track");
+    if (!track || track.children.length < 2) return;
+    track.style.animation = "none";
+    let index = 0;
+    const last = track.children.length - 1;
+    const move = () => {
+      const height = track.children[0].offsetHeight || 26;
+      index += 1;
+      track.style.transition = "transform 0.54s cubic-bezier(0.22, 1, 0.36, 1)";
+      track.style.transform = "translateY(-" + index * height + "px)";
+      if (index >= last) {
+        setTimeout(() => {
+          track.style.transition = "none";
+          track.style.transform = "translateY(0)";
+          index = 0;
+        }, 540);
+      }
+    };
+    setInterval(move, 6000);
+  });
 })();

@@ -9,7 +9,8 @@
     senju: ICONS + "Senju.webp",
     june: ICONS + "TAS June.webp",
     blaku: ICONS + "Blaku.webp",
-    souldameep: ICONS + "SoulDaMeep.webp"
+    souldameep: ICONS + "SoulDaMeep.webp",
+    rxvrse: ICONS + "rxvrse.webp"
   };
 
   const TEAM = {
@@ -89,10 +90,22 @@
       links: [
         { label: "GitHub", url: "https://github.com/SoulDaMeep", icon: "github" }
       ]
+    },
+    rxvrse: {
+      name: "rxvrse",
+      role: "Play tester",
+      photo: PHOTOS.rxvrse,
+      links: [
+        { label: "YouTube", url: "https://www.youtube.com/@rxvrse-rl", icon: "youtube.png" },
+        { label: "TikTok", url: "https://www.tiktok.com/@rxvrsee", icon: "tiktok.png" },
+        { label: "Twitch", url: "https://www.twitch.tv/Rxvrserl", icon: "Twitch.png" },
+        { label: "Discord", url: "https://discord.gg/j42893UMGq", icon: "discord.png" }
+      ]
     }
   };
 
   function iconHtml(icon) {
+    if (!icon) return "";
     if (icon === "github") {
       return '<span class="team-pop-x" aria-hidden="true">GH</span>';
     }
