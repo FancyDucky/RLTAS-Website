@@ -16,7 +16,7 @@
   const TEAM = {
     fractal: {
       name: "F R A C T A L",
-      role: "Founder",
+      role: "Founder · TAS creator",
       photo: PHOTOS.fractal,
       links: [
         { label: "YouTube", url: "https://www.youtube.com/@fractalrl", icon: "youtube.png" },
@@ -27,7 +27,7 @@
     },
     fancyduck: {
       name: "FancyDuck",
-      role: "Founder",
+      role: "Founder · Air Dribbler",
       photo: PHOTOS.fancyduck,
       links: [
         { label: "YouTube", url: "https://www.youtube.com/@FancyDuck_RL", icon: "youtube.png" },
@@ -93,7 +93,7 @@
     },
     rxvrse: {
       name: "rxvrse",
-      role: "Play tester",
+      role: "TAS creator",
       photo: PHOTOS.rxvrse,
       links: [
         { label: "YouTube", url: "https://www.youtube.com/@rxvrse-rl", icon: "youtube.png" },

@@ -252,7 +252,7 @@
     let index = 0;
     const last = track.children.length - 1;
     const move = () => {
-      const height = track.children[0].offsetHeight || 26;
+      const height = track.children[0].getBoundingClientRect().height || bar.clientHeight || 48;
       index += 1;
       track.style.transition = "transform 0.54s cubic-bezier(0.22, 1, 0.36, 1)";
       track.style.transform = "translateY(-" + index * height + "px)";
