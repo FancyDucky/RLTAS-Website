@@ -130,6 +130,13 @@ kbd {
     margin-bottom: 0.8rem;
 }
 
+h2.eyebrow {
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0 0 0.8rem;
+}
+
 /* ---------- Header ---------- */
 .site-header {
     position: sticky;
