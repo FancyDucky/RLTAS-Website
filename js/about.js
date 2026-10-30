@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  const ICONS = "assets/images/Link tree assests/";
+  const ICONS = new URL("../assets/images/Link tree assests/", document.currentScript.src).href;
   const PHOTOS = {
     fractal: ICONS + "Fractal.webp",
     fancyduck: ICONS + "FancyDuck.jpg",
