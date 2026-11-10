@@ -1,0 +1,56 @@
+# Publishes a GitHub Release of the RLTAS plugin whenever a new build is pushed to this branch.
+#
+# To release: put the new build at releases/RLTAS.dll and its version (e.g. 1.0.2) in releases/version.txt,
+# optionally write what changed in releases/notes.md, and push to the "releases" branch.
+# The plugin's updater reads the newest release: its tag is the version (v1.0.2) and its RLTAS.dll is the plugin.
+
+name: Publish plugin release
+
+on:
+  push:
+    branches: [releases]
+    paths: [releases/version.txt]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-plugin
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read the version
+        id: ver
+        run: |
+          v="$(tr -d ' \r\n' < releases/version.txt)"
+          v="${v#v}"
+          if ! [[ "$v" =~ ^[0-9]+(\.[0-9]+){1,3}$ ]]; then
+            echo "releases/version.txt must hold a version like 1.0.2 (got '$v')"; exit 1
+          fi
+          test -s releases/RLTAS.dll || { echo "releases/RLTAS.dll is missing"; exit 1; }
+          echo "tag=v$v" >> "$GITHUB_OUTPUT"
+          echo "version=$v" >> "$GITHUB_OUTPUT"
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.ver.outputs.tag }}
+          VERSION: ${{ steps.ver.outputs.version }}
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG already exists - nothing to do (raise the version to publish a new one)."
+            exit 0
+          fi
+          notes="RLTAS $VERSION"
+          [ -s releases/notes.md ] && notes="$(cat releases/notes.md)"
+          gh release create "$TAG" releases/RLTAS.dll \
+            --target "$GITHUB_SHA" \
+            --title "RLTAS $VERSION" \
+            --notes "$notes" \
+            --latest
