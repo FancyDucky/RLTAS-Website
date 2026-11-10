@@ -1435,6 +1435,14 @@ h2.eyebrow {
     }
 }
 
+.download-version {
+    margin: 14px 0 0;
+    font-family: Rajdhani, sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: 0.04em;
+}
+
 .download-note {
     margin: 16px auto 0;
     max-width: 520px;
