@@ -15,7 +15,16 @@
     1: {
       name: "Tier 1",
       price: "$10",
-      includes: ["Everything in Free", "Customizable mirror bots", "Car scaling", "Radial symmetry mirror bot option"]
+      includes: [
+        "Everything in Free",
+        "Up to 8 customizable mirror bots",
+        "Working car / ball cam for each mirror bot",
+        "Up to 6 balls",
+        "16 custom ball options (hoops, puck, and more)",
+        "Individual ball physics and scaling",
+        "Car scaling",
+        "Radial symmetry mirror bot option"
+      ]
     },
     2: {
       name: "Tier 2",
@@ -24,9 +33,7 @@
         "Everything in Tier 1",
         "Frame editor with ball trajectory",
         "Physics tab (boost strength, gravity, speed, and more)",
-        "Works in LAN",
-        "Multiple balls",
-        "Ball scaling"
+        "Works in LAN"
       ]
     },
     3: {
@@ -34,7 +41,7 @@
       price: "$30",
       includes: [
         "Everything in Tier 2",
-        "Multiplayer TAS",
+        "Up to 6 multiplayers / bots",
         "Bots you can control, rename, and rescale",
         "Works in LAN matches with other players",
         "Individual multiplayer physics",
