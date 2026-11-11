@@ -1450,6 +1450,44 @@ h2.eyebrow {
     font-size: 0.9rem;
 }
 
+.install-help {
+    max-width: 720px;
+    margin: 8px auto 0;
+}
+
+.install-help details {
+    background: transparent;
+}
+
+.install-help summary {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--muted);
+}
+
+.install-help-body {
+    margin-top: 12px;
+}
+
+.install-help-body ol {
+    margin: 0;
+    padding-left: 1.2em;
+    color: var(--muted);
+}
+
+.install-help-body li + li {
+    margin-top: 10px;
+}
+
+.install-help-body p {
+    margin: 14px 0 0;
+}
+
+.install-help-body code {
+    font-size: 0.86em;
+    word-break: break-all;
+}
+
 .rainbow-hue {
     display: inline-block;
     color: #ff4d6d;
