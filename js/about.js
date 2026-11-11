@@ -1,16 +1,19 @@
 (function () {
   "use strict";
 
-  const ICONS = new URL("../assets/images/Link tree assests/", document.currentScript.src).href;
+  const ICONS = new URL("../assets/images/Link tree assests/", document.currentScript.src);
+  function assetUrl(file) {
+    return new URL(file, ICONS).href;
+  }
   const PHOTOS = {
-    fractal: ICONS + "Fractal.webp",
-    fancyduck: ICONS + "FancyDuck.jpg",
-    bredzel: ICONS + "Bredzel.webp",
-    senju: ICONS + "Senju.webp",
-    june: ICONS + "TAS June.webp",
-    blaku: ICONS + "Blaku.webp",
-    souldameep: ICONS + "SoulDaMeep.webp",
-    rxvrse: ICONS + "rxvrse.webp"
+    fractal: assetUrl("Fractal.webp"),
+    fancyduck: assetUrl("FancyDuck.jpg"),
+    bredzel: assetUrl("Bredzel.webp"),
+    senju: assetUrl("Senju.webp"),
+    june: assetUrl("TAS June.webp"),
+    blaku: assetUrl("Blaku.webp"),
+    souldameep: assetUrl("SoulDaMeep.webp"),
+    rxvrse: assetUrl("rxvrse.webp")
   };
 
   const TEAM = {
@@ -109,7 +112,7 @@
     if (icon === "github") {
       return '<span class="team-pop-x" aria-hidden="true">GH</span>';
     }
-    return '<img src="' + encodeURI(ICONS + icon) + '" alt="" />';
+    return '<img src="' + assetUrl(icon) + '" alt="" />';
   }
 
   function photoHtml(person, cls) {
