@@ -173,15 +173,32 @@
         return;
       }
 
+      const ref = data.referral;
+      const note = root.querySelector('[data-field="ownedNote"]');
+      const lines = [];
       if (data.owned > 0) {
-        const note = root.querySelector('[data-field="ownedNote"]');
-        if (note) {
-          const credit = TIER_COST[data.owned] || 0;
-          const full = TIER_COST[data.tier] || 0;
-          const due = Math.max(full - credit, 0);
-          note.textContent = "This account already owns " + (TIER_NAMES[data.owned] || "a tier") + ". You pay the " + dollars(due) + " difference.";
-          note.hidden = false;
+        const credit = TIER_COST[data.owned] || 0;
+        const full = TIER_COST[data.tier] || 0;
+        const due = Math.max(full - credit, 0);
+        lines.push("This account already owns " + (TIER_NAMES[data.owned] || "a tier") + ". You pay the " + dollars(due) + " difference.");
+      }
+      if (ref && ref.due) {
+        // Referral code: 10% off what's due. Show the price before the discount slashed, and the discounted one.
+        const fullEl = root.querySelector('[data-field="price"]');
+        const dueEl = root.querySelector('[data-field="duePrice"]');
+        if (fullEl) {
+          fullEl.textContent = ref.fullDue || fullEl.textContent;
+          fullEl.classList.add("confirm-price--slashed");
         }
+        if (dueEl) {
+          dueEl.textContent = ref.due;
+          dueEl.hidden = false;
+        }
+        lines.push("Referral code " + ref.code + " applied: " + (ref.percent || 10) + "% off. You pay " + ref.due + ".");
+      }
+      if (note && lines.length) {
+        note.textContent = lines.join(" ");
+        note.hidden = false;
       }
 
       if (data.checkoutReady) {
