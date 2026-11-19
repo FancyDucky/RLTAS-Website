@@ -2,6 +2,8 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8"/>
+        <meta name="referrer" content="no-referrer"/>
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://rltas-license.rltas.workers.dev; object-src 'none'; base-uri 'none'; form-action 'self'"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Confirm Purchase | RLTAS</title>
         <meta name="description" content="Confirm your RLTAS account and tier before paying."/>
@@ -44,15 +46,19 @@
                         <p class="muted">Your license goes to the account below. Make sure it's yours.</p>
                     </div>
                     <div class="confirm" id="confirm" aria-live="polite">
+                        <div class="confirm-card" data-state="missing">
+                            <h3>Open checkout from RLTAS</h3>
+                            <p class="muted">To start a purchase, use the buy button in the plugin while logged in to your account.</p>
+                        </div>
                         <div class="confirm-card" data-state="loading" hidden>
                             <p class="muted center">Loading your purchase…</p>
                         </div>
-                        <div class="confirm-card" data-state="ready">
+                        <div class="confirm-card" data-state="ready" hidden>
                             <div class="confirm-row">
                                 <span class="confirm-label">Account</span>
                                 <div>
-                                    <div class="confirm-name" data-field="name">PlayerName</div>
-                                    <div class="confirm-id">Steam ID <code data-field="steamId">76561198000000000</code>
+                                    <div class="confirm-name" data-field="name"></div>
+                                    <div class="confirm-id">Steam ID <code data-field="steamId"></code>
                                     </div>
                                     <div class="confirm-id">Epic ID <code data-field="epicId">—</code>
                                     </div>
@@ -61,7 +67,7 @@
                             <div class="confirm-row">
                                 <span class="confirm-label">Current tier</span>
                                 <div>
-                                    <div class="confirm-tier" data-field="currentTier">TIER 1</div>
+                                    <div class="confirm-tier" data-field="currentTier"></div>
                                     <p class="muted confirm-small" style="margin: 0;">What this account already has.</p>
                                 </div>
                             </div>
@@ -69,16 +75,11 @@
                                 <span class="confirm-label">Upgrading to</span>
                                 <div>
                                     <div class="confirm-tier">
-                                        <span data-field="tierName">TIER 2</span>
-                                        <span class="confirm-price confirm-price--slashed" data-field="price">$20</span>
-                                        <span class="confirm-price-due" data-field="duePrice">$10</span>
+                                        <span data-field="tierName"></span>
+                                        <span class="confirm-price" data-field="price"></span>
+                                        <span class="confirm-price-due" data-field="duePrice" hidden></span>
                                     </div>
-                                    <ul class="checklist" data-field="includes">
-                                        <li>Everything in Tier 1</li>
-                                        <li>Frame editor with ball trajectory</li>
-                                        <li>Physics tab (boost strength, gravity, speed, and more)</li>
-                                        <li>Works in LAN</li>
-                                    </ul>
+                                    <ul class="checklist" data-field="includes"></ul>
                                 </div>
                             </div>
                             <p class="confirm-note" data-field="ownedNote" hidden></p>
@@ -132,6 +133,6 @@
         </footer>
         <script src="../js/config.js?v=2"></script>
         <script src="../js/main.js?v=news25"></script>
-        <script src="../js/checkout.js?v=6"></script>
+        <script src="../js/checkout.js?v=7"></script>
     </body>
 </html>
