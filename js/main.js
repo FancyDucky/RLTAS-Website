@@ -247,6 +247,11 @@
   // ---------- Header news bar ----------
   document.querySelectorAll(".news-bar").forEach((bar) => {
     const track = bar.querySelector(".news-bar-track");
+    // Items with data-until (a sale...) leave the bar on their own once that time has passed.
+    if (track) track.querySelectorAll("[data-until]").forEach((el) => {
+      const until = Date.parse(el.getAttribute("data-until"));
+      if (Number.isFinite(until) && Date.now() >= until) el.remove();
+    });
     if (!track || track.children.length < 2) return;
     track.style.animation = "none";
     let index = 0;

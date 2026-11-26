@@ -181,6 +181,21 @@
         const due = Math.max(full - credit, 0);
         lines.push("This account already owns " + (TIER_NAMES[data.owned] || "a tier") + ". You pay the " + dollars(due) + " difference.");
       }
+      const sale = data.sale;
+      if (sale && sale.due) {
+        // A sale (Black Friday...): the price before it slashed, and what's paid now (also after a referral code).
+        const fullEl = root.querySelector('[data-field="price"]');
+        const dueEl = root.querySelector('[data-field="duePrice"]');
+        if (fullEl) {
+          fullEl.textContent = sale.fullDue || fullEl.textContent;
+          fullEl.classList.add("confirm-price--slashed");
+        }
+        if (dueEl) {
+          dueEl.textContent = data.due || sale.due;
+          dueEl.hidden = false;
+        }
+        lines.push((sale.name || "Sale") + " sale: " + (sale.percent || 20) + "% off.");
+      }
       if (ref && ref.due) {
         // Referral code: 10% off what's due. Show the price before the discount slashed, and the discounted one.
         const fullEl = root.querySelector('[data-field="price"]');
@@ -193,8 +208,9 @@
           dueEl.textContent = ref.due;
           dueEl.hidden = false;
         }
-        lines.push("Referral code " + ref.code + " applied: " + (ref.percent || 10) + "% off. You pay " + ref.due + ".");
+        lines.push("Referral code " + ref.code + " applied: " + (ref.percent || 10) + "% off" + (sale ? " on top of the sale" : "") + ". You pay " + ref.due + ".");
       }
+      if (sale && !ref && data.due) lines.push("You pay " + data.due + ".");
       if (note && lines.length) {
         note.textContent = lines.join(" ");
         note.hidden = false;
