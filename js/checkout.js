@@ -1,7 +1,6 @@
 // checkout.html?code=XXXX is opened by the plugin.
 // Fills account + tiers from the license server, then Continue goes to Stripe via GET /go/<code>.
 // checkout.html?paid=1 is the return page after Stripe.
-// Opening the page with no code keeps the HTML placeholders so the layout is visible.
 (function () {
   "use strict";
 
