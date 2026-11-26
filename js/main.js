@@ -244,6 +244,13 @@
     el.textContent = new Date().getFullYear();
   });
 
+  // ---------- Sale prices ----------
+  // A price shown on sale (data-sale-until) goes back to its normal price (data-price) once the sale has ended.
+  document.querySelectorAll("[data-sale-until]").forEach((el) => {
+    const until = Date.parse(el.getAttribute("data-sale-until"));
+    if (Number.isFinite(until) && Date.now() >= until) el.textContent = el.getAttribute("data-price") || el.textContent;
+  });
+
   // ---------- Header news bar ----------
   document.querySelectorAll(".news-bar").forEach((bar) => {
     const track = bar.querySelector(".news-bar-track");

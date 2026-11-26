@@ -997,6 +997,29 @@ h2.eyebrow {
     color: var(--muted);
 }
 
+/* A sale (Black Friday): the normal price struck through, the sale price beside it, a small tag under them. */
+.tier-price-was {
+    color: var(--muted);
+    font-size: 0.72em;
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+    margin-right: 6px;
+}
+
+.tier-price-sale {
+    color: var(--green);
+}
+
+.tier-price .tier-price-tag {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--orange);
+}
+
 .tier-note {
     color: var(--muted);
     font-size: 0.85rem;
